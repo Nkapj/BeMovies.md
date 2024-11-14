@@ -86,8 +86,74 @@ dialog::backdrop {
     ;
 }
 
+.listeGenre ul li a.active {
+    background-color: red;
+    color: white;
+}
+.swiper {
+    width: 80%;
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 
+/* Swiper wrapper et slides */
+.swiper-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
 
+.swiper-slide {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 300px;
+}
+
+.swiper-slide img {
+    width: 100%;
+    height: auto;
+    max-height: 300px;
+    border-radius: 5px;
+}
+
+/* Custom navigation buttons */
+.custom-button-next, .custom-button-prev {
+    font-size: 30px;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.5);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+}
+
+.custom-button-next {
+    right: 10px;
+}
+
+.custom-button-prev {
+    left: 10px;
+}
+
+.swiper-pagination {
+    margin-top: 10px;
+    text-align: center;
+    color: #ffffff;
+}
 
 
 

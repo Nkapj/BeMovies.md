@@ -63,14 +63,14 @@
 
 
 
-<section class="swiper-container catalog1">
+<section class="swiper catalog1">
     <h3>Results for:</h3>
-        <div class="swiper-wrapper">
-        </div>
-        
-        <div class="swiper-pagination"></div>
-        <div class="custom-button-next">&gt;</div>
-        <div class="custom-button-prev">&lt;</div>
+    <div class="swiper-wrapper">
+    </div>
+    
+    <div class="swiper-pagination"></div>
+    <div class="custom-button-next">&gt;</div>
+    <div class="custom-button-prev">&lt;</div>
     
 </section>
 <!------------------------------------------------------------------------->
@@ -78,7 +78,7 @@
 
 
 
-<section class="swiper-container catalog2">
+<section class="swiper catalog2">
     <h3>Latest Releases</h3>
         <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="bemov/Capture d'écran 2024-09-03 122524.png" alt="tokyo"></div>
@@ -97,28 +97,26 @@
         <h3 class="entete">Movies by genre</h3>
         <div class="listeGenre">
             <ul>
-                <li><a href="#">Comedy</a></li>
-                <li><a href="#">Drama</a></li>
-                <li><a href="#">Action</a></li>
-                <li><a href="#">Romance</a></li>
-                <li><a href="#">Fantasy</a></li>
-                <li><a href="#">Animation</a></li>
+                <!--les ids sont les call api TMDB respectifs pour ces genres-->
+                <li><a href="/" id="35&page=1">Comedy</a></li>
+                <li><a href="/" id="18&page=1">Drama</a></li>
+                <li><a href="/" id="28&page=1">Action</a></li>
+                <li><a href="/" id="10749&page=1">Romance</a></li>
+                <li><a href="/" id="14&page=1">Fantasy</a></li>
+                <li><a href="/" id="16&page=1">Animation</a></li>
             </ul>
             <hr>
         </div>
     </section>
 
     <!--------------------------------------------------------------------->
-            <section class="swiper-container catalog3">
+            <section class="swiper catalog3">
                 <h3>"type"</h3>
                 <div class="swiper-wrapper">
-
-                    <div class="swiper-slide"><img src="bemov/Capture d'écran 2024-09-03 122524.png" alt="tokyo"></div>
-                    <div class="swiper-slide"><img src="bemov/Capture d'écran 2024-09-03 122524.png" alt="toktok"></div>
                 </div>
-                    <div class="swiper-pagination"></div>
-                    <div class="custom-button-next">&gt;</div>
-                    <div class="custom-button-prev">&lt;</div>
+                <div class="swiper-pagination"></div>
+                <div class="custom-button-next">&gt;</div>
+                <div class="custom-button-prev">&lt;</div>
             </section>
     
 
@@ -129,11 +127,12 @@
         <h2 class="titre"><span>BE</span>movie</h2>
         <form action="submit" class="navFoot">
                 <ul>
-                    <li><a href="#">search</a></li>
-                    <li><a href="#">latest</a></li>
-                    <li><a href="#">genres</a></li>
-                    <li><a href="#">register</a></li>
-                    <li><a href="#">signin</a></li>
+                    <li><a href="/" id="35">Comedy</a></li>
+                    <li><a href="/" id="18">Drama</a></li>
+                    <li><a href="/" id="28">Action</a></li>
+                    <li><a href="/" id="10749">Romance</a></li>
+                    <li><a href="/" id="14">Fantasy</a></li>
+                    <li><a href="/" id="16">Animation</a></li>
                 </ul>
                 
         </form>
