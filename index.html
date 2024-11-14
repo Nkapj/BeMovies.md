@@ -12,74 +12,55 @@
     <title>BEMOVIES</title>
 </head>
 <body>
-    
-
-
-
     <!-- Pop-up automatique -->
     <dialog class="pop">
-    <button class="close-btn" onclick="pop.close()">X</button>
-    <h1>Bienvenue sur notre plateforme !</h1>
-    <p>Profitez de notre sélection exclusive de films et séries.</p>
+        <button class="close-btn" onclick="pop.close()">X</button>
+        <h1>Bienvenue sur notre plateforme !</h1>
+        <p>Profitez de notre sélection exclusive de films et séries.</p>
     </dialog>
 
-
-    <!------------------------------------------------------------------------->
+    <!-- Modale pour afficher les informations du film sélectionné -->
     <div class="modal">
+        <div class="close-btn">&times;</div> <!-- Bouton de fermeture en haut à gauche -->
         <div class="MC">
-            <span class="close">&times;</span>
-            <img src="" alt="" class="mimage">
-            <h3 class="Film"></h3>
-            <p class="rate"></p>
-            <p class="typeFilm"></p>
-            <ul class="sinopsys"></ul>
-            <p class="cast"></p>
-            
-      </div>       
-</div>
+            <img src="" alt="" class="mimage"> <!-- Image du film -->
+            <h3 class="Film"></h3> <!-- Titre du film -->
+            <p class="rate"></p> <!-- Note du film -->
+            <p class="typeFilm"></p> <!-- Genres du film -->
+            <ul class="sinopsys"></ul> <!-- Synopsis du film -->
+        </div>       
+    </div>
 
-
-<!------------------------------------------------------------------------->
-        <header class="navbar">
-            <h2 class="title"><span>BE</span>movie</h2>
-            <nav class="navLinks">
-                <ul>
-                    <li><a href="#">search</a></li>
-                    <li><a href="#">latest</a></li>
-                    <li><a href="#">genres</a></li>
-                    <li><a href="#">register</a></li>
-                    <li><a href="#">signin</a></li>
-                </ul>
+    <header class="navbar">
+        <h2 class="title"><span>BE</span>movie</h2>
+        <nav class="navLinks">
+            <ul>
+                <li><a href="#">search</a></li>
+                <li><a href="#">latest</a></li>
+                <li><a href="#">genres</a></li>
+                <li><a href="#">register</a></li>
+                <li><a href="#">signin</a></li>
+            </ul>
         </nav>
     </header>
-<!------------------------------------------------------------------------->
+
     <section class="search">
         <input type="text" name="" id="research">
         <button class="btn">
             <span>&#10140</span>
         </button>
     </section>
-<!------------------------------------------------------------------------->
 
+    <section class="swiper catalog1">
+        <h3>Results for:</h3>
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-pagination"></div>
+        <div class="custom-button-next">&gt;</div>
+        <div class="custom-button-prev">&lt;</div>
+    </section>
 
-
-<section class="swiper catalog1">
-    <h3>Results for:</h3>
-    <div class="swiper-wrapper">
-    </div>
-    
-    <div class="swiper-pagination"></div>
-    <div class="custom-button-next">&gt;</div>
-    <div class="custom-button-prev">&lt;</div>
-    
-</section>
-<!------------------------------------------------------------------------->
-
-
-
-
-<section class="swiper catalog2">
-    <h3>Latest Releases</h3>
+    <section class="swiper catalog2">
+        <h3>Latest Releases</h3>
         <div class="swiper-wrapper">
             <div class="swiper-slide"><img src="bemov/Capture d'écran 2024-09-03 122524.png" alt="tokyo"></div>
             <div class="swiper-slide"><img src="bemov/Capture d'écran 2024-09-03 122524.png" alt="toktok"></div>
@@ -87,11 +68,7 @@
         <div class="swiper-pagination"></div>
         <div class="custom-button-next">&gt;</div>
         <div class="custom-button-prev">&lt;</div>
-</section>
-
-
-
-<!------------------------------------------------------------------------->
+    </section>
 
     <section class="genre">
         <h3 class="entete">Movies by genre</h3>
@@ -109,40 +86,30 @@
         </div>
     </section>
 
-    <!--------------------------------------------------------------------->
-            <section class="swiper catalog3">
-                <h3>"type"</h3>
-                <div class="swiper-wrapper">
-                </div>
-                <div class="swiper-pagination"></div>
-                <div class="custom-button-next">&gt;</div>
-                <div class="custom-button-prev">&lt;</div>
-            </section>
-    
-
-<!------------------------------------------------------------------------->
-
+    <section class="swiper catalog3">
+        <h3>"type"</h3>
+        <div class="swiper-wrapper"></div>
+        <div class="swiper-pagination"></div>
+        <div class="custom-button-next">&gt;</div>
+        <div class="custom-button-prev">&lt;</div>
+    </section>
 
     <footer>
         <h2 class="titre"><span>BE</span>movie</h2>
         <form action="submit" class="navFoot">
-                <ul>
-                    <li><a href="/" id="35">Comedy</a></li>
-                    <li><a href="/" id="18">Drama</a></li>
-                    <li><a href="/" id="28">Action</a></li>
-                    <li><a href="/" id="10749">Romance</a></li>
-                    <li><a href="/" id="14">Fantasy</a></li>
-                    <li><a href="/" id="16">Animation</a></li>
-                </ul>
-                
+            <ul>
+                <li><a href="/" id="35">Comedy</a></li>
+                <li><a href="/" id="18">Drama</a></li>
+                <li><a href="/" id="28">Action</a></li>
+                <li><a href="/" id="10749">Romance</a></li>
+                <li><a href="/" id="14">Fantasy</a></li>
+                <li><a href="/" id="16">Animation</a></li>
+            </ul>
         </form>
-                <p class="note">@2023 - All rights reserved</p>
+        <p class="note">@2023 - All rights reserved</p>
     </footer>
-    
-
 
     <script src="app.js"></script>
-    
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </body>
 </html>

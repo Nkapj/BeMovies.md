@@ -6,7 +6,7 @@ const input = search.querySelector('input');
 const button = search.querySelector('button');
 const genreList = document.querySelector('.listeGenre');
 const genreLinks = genreList.querySelectorAll('li a');
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYmNmYjUwYzI3NjQ1NWE0YjkxNDk4ZDY4YmQ1OTBjYyIsIm5iZiI6MTczMTU0ODQ5NC40MDUyMTEsInN1YiI6IjY3MzMzYzA2YjljYmRhYmUyOWMyYzNiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.KHFm4xZD7SuXnmN4ypN7o_9E6nx7WNp1YuE9A8LiBNs';
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYmNmYjUwYzI3NjQ1NWE0YjkxNDk4ZDY4YmQ1OTBjYyIsInN1YiI6IjY3MzMzYzA2YjljYmRhYmUyOWMyYzNiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.KHFm4xZD7SuXnmN4ypN7o_9E6nx7WNp1YuE9A8LiBNs';
 
 let hasSearched = false;
 let hasGenreSelected = false;
@@ -69,8 +69,38 @@ const displayFilms = async (swipper, genre = null) => {
                 
             myFilmCard.appendChild(myFilmImg);
             swipper.appendChild(myFilmCard);
+
+            // Ajout d'un événement de clic pour ouvrir le pop-up
+            myFilmCard.addEventListener('click', () => {
+                openModal(element);
+            });
         });
 };
+
+// Fonction pour ouvrir le pop-up avec le contenu du film
+const openModal = (film) => {
+    const modal = document.querySelector('.modal');
+    const modalImage = modal.querySelector('.mimage');
+    const modalTitle = modal.querySelector('.Film');
+    const modalRate = modal.querySelector('.rate');
+    const modalType = modal.querySelector('.typeFilm');
+    const modalSynopsis = modal.querySelector('.sinopsys');
+
+    // Remplir le contenu de la modale avec les données du film
+    modalImage.src = `https://image.tmdb.org/t/p/w500${film.poster_path}`;
+    modalTitle.textContent = film.title || 'Titre indisponible';
+    modalRate.textContent = `Note : ${film.vote_average || 'N/A'}`;
+    modalType.textContent = `Genre : ${film.genre_ids.join(', ') || 'N/A'}`;
+    modalSynopsis.innerHTML = `<li>${film.overview || 'Synopsis indisponible'}</li>`;
+
+    // Afficher la modale
+    modal.style.display = 'flex';
+};
+
+// Fermeture de la modale
+document.querySelector('.modal .close-btn').addEventListener('click', () => {
+    document.querySelector('.modal').style.display = 'none';
+});
 
 // Chargement initial des films pour chaque Swiper
 (async () => {
