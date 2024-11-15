@@ -6,7 +6,7 @@ const input = search.querySelector('input');
 const button = search.querySelector('button');
 const genreList = document.querySelector('.listeGenre');
 const genreLinks = genreList.querySelectorAll('li a');
-const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYmNmYjUwYzI3NjQ1NWE0YjkxNDk4ZDY4YmQ1OTBjYyIsInN1YiI6IjY3MzMzYzA2YjljYmRhYmUyOWMyYzNiMyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.KHFm4xZD7SuXnmN4ypN7o_9E6nx7WNp1YuE9A8LiBNs';
+const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYmNmYjUwYzI3NjQ1NWE0YjkxNDk4ZDY4YmQ1OTBjYyIsIm5iZiI6MTczMTU4NDI5Mi44NjUxMzg4LCJzdWIiOiI2NzMzM2MwNmI5Y2JkYWJlMjljMmMzYjMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.kgbG2Nuddero3_Fm5zPKBFy0Ff6_2X6B45O4SEx5qis';
 
 let hasSearched = false;
 let hasGenreSelected = false;
@@ -112,6 +112,7 @@ document.querySelector('.modal .close-btn').addEventListener('click', () => {
     const swiperSettings = {
         slidesPerView: 1,
         slidesPerGroup: 1,
+        fixedHeight: "230px",
         loop: true,
         navigation: {
             nextEl: '.custom-button-next',
