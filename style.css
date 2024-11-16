@@ -11,9 +11,11 @@ body {
     background-color: #191b20;
     color: #ffffff;
 }
+
 a{
     color: white;
 }
+
 /* Modale */
 .modal {
     display: none; 
@@ -72,14 +74,17 @@ a{
     justify-content: space-between;
     padding: 10px;
 }
+
 .search{
     margin: 40px 0px;
     display: flex;
     justify-content: center;
 }
+
 .search input{
     height: 27px;
 }
+
 .btn{
     padding: 0px 6px;
     margin-left: -3px;
@@ -230,7 +235,6 @@ footer .navFoot ul li a:hover {
 .swiper-slide img {
     width: 100%;
     height: auto;
-    max-height: 300px; /* Hauteur doublée des images */
     border-radius: 5px;
     cursor: pointer;
 }

@@ -66,6 +66,7 @@ const displayFilms = async (swipper, genre = null) => {
             const myFilmImg = document.createElement('img');
             myFilmImg.src = `https://image.tmdb.org/t/p/w500${element.poster_path}`;
             myFilmImg.alt = element.title || 'Film image';
+            myFilmImg.style.height = '230px';
                 
             myFilmCard.appendChild(myFilmImg);
             swipper.appendChild(myFilmCard);
@@ -77,7 +78,6 @@ const displayFilms = async (swipper, genre = null) => {
         });
 };
 
-// Fonction pour ouvrir le pop-up avec le contenu du film
 const openModal = (film) => {
     const modal = document.querySelector('.modal');
     const modalImage = modal.querySelector('.mimage');
@@ -97,18 +97,15 @@ const openModal = (film) => {
     modal.style.display = 'flex';
 };
 
-// Fermeture de la modale
 document.querySelector('.modal .close-btn').addEventListener('click', () => {
     document.querySelector('.modal').style.display = 'none';
 });
 
-// Chargement initial des films pour chaque Swiper
 (async () => {
     await displayFilms(swipper1);
     await displayFilms(swipper2);
     await displayFilms(swipper3);
 
-    // Initialisation des Swipers après le chargement des films
     const swiperSettings = {
         slidesPerView: 1,
         slidesPerGroup: 1,
@@ -146,14 +143,12 @@ document.querySelector('.modal .close-btn').addEventListener('click', () => {
     new Swiper('.catalog3', swiperSettings);
 })();
 
-// Événements pour la recherche
 button.addEventListener('click', (event) => {
     event.preventDefault();
     hasSearched = true;
     displayFilms(swipper1);
 });
 
-// Écouteur d'événements pour la sélection de genre
 genreLinks.forEach(link => {
     link.addEventListener('click', (event) => {
         event.preventDefault();
