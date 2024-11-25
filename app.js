@@ -6,6 +6,7 @@ const input = search.querySelector('input');
 const button = search.querySelector('button');
 const genreList = document.querySelector('.listeGenre');
 const genreLinks = genreList.querySelectorAll('li a');
+const signLink = document.querySelector('.signLink');
 const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYmNmYjUwYzI3NjQ1NWE0YjkxNDk4ZDY4YmQ1OTBjYyIsIm5iZiI6MTczMTU4NDI5Mi44NjUxMzg4LCJzdWIiOiI2NzMzM2MwNmI5Y2JkYWJlMjljMmMzYjMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.kgbG2Nuddero3_Fm5zPKBFy0Ff6_2X6B45O4SEx5qis';
 
 let hasSearched = false;
@@ -20,7 +21,7 @@ const searchFilm = async (swipper, genre = null) => {
     } else if (swipper === swipper2) {
         apiUrl = `https://api.themoviedb.org/3/movie/now_playing?language=fr-FR&page=1`;
     } else if (swipper === swipper3 && !hasGenreSelected) {
-        apiUrl = `https://api.themoviedb.org/3/movie/now_playing?language=fr-FR&page=1`;
+        apiUrl = `https://api.themoviedb.org/3/discover/movie?language=fr-FR&sort_by=original_title.asc&with_genres=35`;
     } else {
         apiUrl = `https://api.themoviedb.org/3/discover/movie?language=fr-FR&sort_by=original_title.asc`;
         if (genre) {
@@ -32,7 +33,7 @@ const searchFilm = async (swipper, genre = null) => {
         const callAp = await fetch(apiUrl, { 
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`,
+                'Authorization': `Bearer ${await token}`,
                 'Content-Type': 'application/json'
             }
         });
@@ -90,14 +91,18 @@ const openModal = (film) => {
     modalImage.src = `https://image.tmdb.org/t/p/w500${film.poster_path}`;
     modalTitle.textContent = film.title || 'Titre indisponible';
     modalRate.textContent = `Note : ${film.vote_average || 'N/A'}`;
-    modalType.textContent = `Genre : ${film.genre_ids.join(', ') || 'N/A'}`;
     modalSynopsis.innerHTML = `<li>${film.overview || 'Synopsis indisponible'}</li>`;
 
     // Afficher la modale
     modal.style.display = 'flex';
 };
+signLink.addEventListener('click', () => {
+    document.querySelector('.modalSign').style.display = 'block';})
 
 // Fermeture de la modale
+document.querySelector('.close-btn').addEventListener('click', () => {
+    document.querySelector('.modalSign').style.display = 'none';
+});
 document.querySelector('.modal .close-btn').addEventListener('click', () => {
     document.querySelector('.modal').style.display = 'none';
 });
@@ -147,10 +152,10 @@ document.querySelector('.modal .close-btn').addEventListener('click', () => {
 })();
 
 // Événements pour la recherche
-button.addEventListener('click', (event) => {
+button.addEventListener('click', async (event) => {
     event.preventDefault();
     hasSearched = true;
-    displayFilms(swipper1);
+    await displayFilms(swipper1);
 });
 
 // Écouteur d'événements pour la sélection de genre

@@ -43,12 +43,10 @@ a{
 }
 
 /* Bouton de fermeture stylisé */
-.modal .close-btn {
+.close-btn {
     position: absolute;
-    top: 10px;
-    left: 10px;
-    width: 30px;
-    height: 30px;
+    width: 10px;
+    height: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -56,12 +54,142 @@ a{
     border: 1px solid #ffffff; /* Bordure blanche */
     color: #ffffff; /* Texte blanc */
     cursor: pointer;
-    font-size: 18px;
+    font-size: 9px;
     background: transparent;
 }
 
-.modal .close-btn:hover {
+.close-btn:hover {
     background: rgba(255, 255, 255, 0.1); /* Légère surbrillance au survol */
+}
+.modal img{
+    width: 300px;
+    height: auto;
+}
+.modalSign{
+    display :none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    z-index: 1000;
+    background-color: black;
+    padding: 7px 7px;
+    
+}
+.modalContainer{
+    padding: 0px 30px;
+}
+.btnContainer{
+    margin: 30px 0px 30px 0px;
+    display: flex;
+    justify-content: center;
+}
+.btnContainer button{
+    padding: 7px 10px;
+    width:90px;
+    border: none;
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    letter-spacing: 1px;
+    font-size: 0.8em;
+    font-weight: 800;
+    
+}
+.btnContainer .sign{
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    border-right: 0.5px solid white;
+}
+.btnContainer .log{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-left: 0.5px solid white;
+
+}
+.sign:hover, .log:hover{
+    color: red;
+    cursor: pointer;
+}
+.formContainer{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    color: white;
+    margin-bottom: 20px;
+}
+.formContainer input{
+    height: 28px;
+    width: 180px;
+    border-radius: 5px;
+    font-size: 0.68em;
+    font-weight: 600;
+    padding-left:10px ;
+}
+.checkbtn{
+    margin-top: -14px;
+    margin-bottom: 20px;
+}
+input[type="checkbox"] {
+    -webkit-appearance: none; /* Pour les navigateurs basés sur WebKit */
+    -moz-appearance: none;    /* Pour Firefox */
+    appearance: none;         /* Style général */
+
+    /* Taille de la checkbox */
+    width: 10px;
+    height: 10px;
+
+    /* Pas de bord ou de décoration */
+    border: none;
+    border-radius: 2px;
+    padding: 0;
+    margin: 0;
+
+    /* Couleur de fond neutre */
+    cursor: pointer;
+    background-color: white;
+}
+
+/* Optionnel : Personnaliser l'état checked */
+input[type="checkbox"]:checked {
+    background-color: #000; /* Une couleur visible lorsqu'elle est cochée */
+}
+.checkbtn label{
+    font-size: 0.7em;
+    font-weight: 100;
+}
+.login{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+.login button:hover{
+    color: black;
+    cursor: pointer;
+}
+.login button{
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: red;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 13px;
+    margin-top: 5px;
+}
+.loginA{
+    color: red;
+    font-size: 0.65em;
+    font-weight: 100;
+
+}
+.login p{
+    font-size: 0.7em;
+    margin-bottom: 50px;
+}
+.login span a{
+    color: red;
 }
 
 /* Styles de la barre de navigation */
@@ -220,7 +348,7 @@ footer .navFoot ul li a:hover {
 }
 
 .swiper-slide {
-    width: 100px; /* Largeur des slides */
+    width: 300px; /* Largeur des slides */
     height: 300px; /* Hauteur doublée */
     display: flex;
     align-items: center;

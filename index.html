@@ -13,16 +13,33 @@
 </head>
 <body>
     <!-- Pop-up automatique -->
-    <dialog class="pop">
-        <button class="close-btn" onclick="pop.close()">X</button>
-        <h1>Bienvenue sur notre plateforme !</h1>
-        <p>Profitez de notre sélection exclusive de films et séries.</p>
-    </dialog>
+    <div class="modalSign">
+        <div class="close-btn">X</div>
+        <div class="modalContainer">
+            <div class="btnContainer">
+                <button class="sign">SIGN UP</button><button class="log">LOGIN</button>
+            </div>
+            <div class="formContainer">
+                <input type="text" id="username" placeholder="Username">
+                <input type="text" id="password" placeholder="Password">
+            </div>
+            <div class="checkbtn">
+                <input type="checkbox">
+                <label for="check">Remember me</label>
+            </div>
+            <div class="login">
+                <button>LOGIN</button>
+                <a href="/" class="loginA">forgot my password</a>
+                <p>not a member yet?<span><a href="/"> Sign up</a></span></p>
+            </div>    
+        </div>
+        
+    </div>
 
     <!-- Modale pour afficher les informations du film sélectionné -->
-    <div class="modal">
-        <div class="close-btn">&times;</div> <!-- Bouton de fermeture en haut à gauche -->
+    <div class="modal"> 
         <div class="MC">
+            <div class="close-btn">X</div><!-- Bouton de fermeture en haut à gauche -->
             <img src="" alt="" class="mimage"> <!-- Image du film -->
             <h3 class="Film"></h3> <!-- Titre du film -->
             <p class="rate"></p> <!-- Note du film -->
@@ -39,7 +56,7 @@
                 <li><a href="#">latest</a></li>
                 <li><a href="#">genres</a></li>
                 <li><a href="#">register</a></li>
-                <li><a href="#">signin</a></li>
+                <li><a href="#" class="signLink">signin</a></li>
             </ul>
         </nav>
     </header>
