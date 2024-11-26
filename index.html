@@ -6,12 +6,15 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inria+Sans:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
     <link rel="stylesheet" href="style.css">
+
     <title>BEMOVIES</title>
 </head>
+
 <body>
+
+
     <!-- Pop-up automatique -->
     <div class="modalSign">
         <div class="close-btn">X</div>
@@ -36,17 +39,28 @@
         
     </div>
 
+
     <!-- Modale pour afficher les informations du film sélectionné -->
+
+
+
     <div class="modal"> 
         <div class="MC">
-            <div class="close-btn">X</div><!-- Bouton de fermeture en haut à gauche -->
+            <p class="close-btn1">X</p><!-- Bouton de fermeture en haut à gauche -->
             <img src="" alt="" class="mimage"> <!-- Image du film -->
-            <h3 class="Film"></h3> <!-- Titre du film -->
-            <p class="rate"></p> <!-- Note du film -->
-            <p class="typeFilm"></p> <!-- Genres du film -->
-            <ul class="sinopsys"></ul> <!-- Synopsis du film -->
+            <div class="texte-content">
+                <h3 class="Film"></h3> <!-- Titre du film -->
+                <p class="rate"></p> <!-- Note du film -->
+                <p class="date"></p> <!-- datedu film -->
+                <p class="typeFilm"></p> <!-- Genres du film -->
+                <p class="sinopsys"></p> <!-- Synopsis du film -->
+            </div>   
         </div>       
     </div>
+
+
+    <!-- Barre de nav en haut  -->
+
 
     <header class="navbar">
         <h2 class="title"><span>BE</span>movie</h2>
@@ -61,6 +75,10 @@
         </nav>
     </header>
 
+
+    <!-- la barre de recherche -->
+
+
     <section class="search">
         <input type="text" name="" id="research">
         <button class="btn">
@@ -68,13 +86,19 @@
         </button>
     </section>
 
+    <!--  PREMIERE SECTION DE FILM PAR RECHERCHE-->
+
+
     <section class="swiper catalog1">
-        <h3>Results for:</h3>
+        <h3 class="results">Results for:</h3>
         <div class="swiper-wrapper"></div>
+        
         <div class="swiper-pagination"></div>
         <div class="custom-button-next">&gt;</div>
         <div class="custom-button-prev">&lt;</div>
     </section>
+
+    <!--  SECONDE SECTION DE FILM -->
 
     <section class="swiper catalog2">
         <h3>Latest Releases</h3>
@@ -86,6 +110,9 @@
         <div class="custom-button-next">&gt;</div>
         <div class="custom-button-prev">&lt;</div>
     </section>
+
+
+    <!--  DERNIERE SECTION DE FILM PAR GENRE-->
 
     <section class="genre">
         <h3 class="entete">Movies by genre</h3>
@@ -104,12 +131,16 @@
     </section>
 
     <section class="swiper catalog3">
-        <h3>"type"</h3>
+        <h3 class = "legenre">Type</h3>
         <div class="swiper-wrapper"></div>
         <div class="swiper-pagination"></div>
-        <div class="custom-button-next">&gt;</div>
+        <div class="custom-button-next">
+            <button><img src="" alt=""></button>&gt;</div>
         <div class="custom-button-prev">&lt;</div>
     </section>
+
+
+    <!--  BARRE NAV DU BAS - FOOTER -->
 
     <footer>
         <h2 class="titre"><span>BE</span>movie</h2>

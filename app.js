@@ -9,6 +9,11 @@ const genreLinks = genreList.querySelectorAll('li a');
 const signLink = document.querySelector('.signLink');
 const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYmNmYjUwYzI3NjQ1NWE0YjkxNDk4ZDY4YmQ1OTBjYyIsIm5iZiI6MTczMTU4NDI5Mi44NjUxMzg4LCJzdWIiOiI2NzMzM2MwNmI5Y2JkYWJlMjljMmMzYjMiLCJzY29wZXMiOlsiYXBpX3JlYWQiXSwidmVyc2lvbiI6MX0.kgbG2Nuddero3_Fm5zPKBFy0Ff6_2X6B45O4SEx5qis';
 
+const legenre = document.querySelector(".legenre");
+const results = document.querySelector(".results");
+
+
+
 let hasSearched = false;
 let hasGenreSelected = false;
 
@@ -28,6 +33,7 @@ const searchFilm = async (swipper, genre = null) => {
             apiUrl += `&with_genres=${genre}`;
         }
     }
+    results.innerHTML= `Result for: ${input.value}`;
 
     try {
         const callAp = await fetch(apiUrl, { 
@@ -64,19 +70,35 @@ const displayFilms = async (swipper, genre = null) => {
             const myFilmCard = document.createElement('div');
             myFilmCard.classList.add('swiper-slide');
                 
+              // NOUVEAU : Ajout du conteneur
+            const cardContainer = document.createElement('div');
+            cardContainer.classList.add('card-container');
+            
             const myFilmImg = document.createElement('img');
             myFilmImg.src = `https://image.tmdb.org/t/p/w500${element.poster_path}`;
             myFilmImg.alt = element.title || 'Film image';
-                
-            myFilmCard.appendChild(myFilmImg);
+            
+              // NOUVEAU : Ajout de la div hover
+            const hoverInfo = document.createElement('div');
+            hoverInfo.classList.add('hover-info');
+            hoverInfo.innerHTML = `
+                <h3>${element.title || 'Titre indisponible'}</h3>
+                <p class="rate">Note: ${element.vote_average || 'N/A'}/10</p>
+                <p><strong>Date de sortie :</strong> ${element.release_date.slice(0,4) || 'Non disponible'}</p>
+            `;
+            
+              // NOUVEAU : Structure modifiée
+            cardContainer.appendChild(myFilmImg);
+            cardContainer.appendChild(hoverInfo);
+            myFilmCard.appendChild(cardContainer);
             swipper.appendChild(myFilmCard);
-
-            // Ajout d'un événement de clic pour ouvrir le pop-up
             myFilmCard.addEventListener('click', () => {
                 openModal(element);
             });
         });
 };
+
+
 
 // Fonction pour ouvrir le pop-up avec le contenu du film
 const openModal = (film) => {
@@ -86,12 +108,16 @@ const openModal = (film) => {
     const modalRate = modal.querySelector('.rate');
     const modalType = modal.querySelector('.typeFilm');
     const modalSynopsis = modal.querySelector('.sinopsys');
+    const date = modal.querySelector('.date');
+
 
     // Remplir le contenu de la modale avec les données du film
     modalImage.src = `https://image.tmdb.org/t/p/w500${film.poster_path}`;
     modalTitle.textContent = film.title || 'Titre indisponible';
-    modalRate.textContent = `Note : ${film.vote_average || 'N/A'}`;
+    modalRate.textContent = ` ${film.vote_average || 'N/A'}`;
     modalSynopsis.innerHTML = `<li>${film.overview || 'Synopsis indisponible'}</li>`;
+    date.innerHTML = `<p>${film.release_date.slice(0,4) || 'Non disponible'}</p>`
+
 
     // Afficher la modale
     modal.style.display = 'flex';
@@ -103,7 +129,7 @@ signLink.addEventListener('click', () => {
 document.querySelector('.close-btn').addEventListener('click', () => {
     document.querySelector('.modalSign').style.display = 'none';
 });
-document.querySelector('.modal .close-btn').addEventListener('click', () => {
+document.querySelector('.modal .close-btn1').addEventListener('click', () => {
     document.querySelector('.modal').style.display = 'none';
 });
 
@@ -123,10 +149,10 @@ document.querySelector('.modal .close-btn').addEventListener('click', () => {
             nextEl: '.custom-button-next',
             prevEl: '.custom-button-prev',
         },
-        pagination: {
-            el: '.swiper-pagination',
-            clickable: true,
-        },
+        // pagination: {
+        //     el: '.swiper-pagination',
+        //     clickable: true,
+        // },
         breakpoints: {
             600: {
                 slidesPerView: 2,
@@ -135,13 +161,13 @@ document.querySelector('.modal .close-btn').addEventListener('click', () => {
                 slidesPerView: 3,
             },
             1440: {
-                slidesPerView: 5,
+                slidesPerView: 4,
             },
             1800: {
-                slidesPerView: 6,
+                slidesPerView: 4,
             },
             2000: {
-                slidesPerView: 8,
+                slidesPerView: 5,
             }
         }
     };
@@ -164,6 +190,7 @@ genreLinks.forEach(link => {
         event.preventDefault();
         hasGenreSelected = true;
         const genreId = event.target.id;
+        legenre.innerHTML=link.innerText;
         displayFilms(swipper3, genreId);
         genreLinks.forEach(l => l.classList.remove('active'));
         event.target.classList.add('active');
