@@ -114,9 +114,10 @@ const openModal = (film) => {
     // Remplir le contenu de la modale avec les données du film
     modalImage.src = `https://image.tmdb.org/t/p/w500${film.poster_path}`;
     modalTitle.textContent = film.title || 'Titre indisponible';
+    date.innerHTML = `<p>${film.release_date.slice(0,4) || 'Non disponible'}</p>`;
     modalRate.textContent = ` ${film.vote_average || 'N/A'}`;
     modalSynopsis.innerHTML = `<li>${film.overview || 'Synopsis indisponible'}</li>`;
-    date.innerHTML = `<p>${film.release_date.slice(0,4) || 'Non disponible'}</p>`
+    
 
 
     // Afficher la modale
