@@ -38,6 +38,7 @@ a{
     bottom: -100%;
     left: 0;
     width: 100%;
+    overflow: hidden;
     background: rgba(0, 0, 0, 0.8);
     color: white;
     padding: 10px;
@@ -46,6 +47,9 @@ a{
 
 .card-container:hover .hover-info {
     bottom: 0;
+    width: 240px;
+    height: 355px;
+    color: #cc0000;
 }
 
 .card-container:hover img {
@@ -79,8 +83,6 @@ a{
     z-index: 1000;
     padding-top: 40px;
 
-
-    
 }
 
 .MC {
@@ -97,7 +99,7 @@ a{
     position: relative;
 }
 
-.MC .texte-content {
+.MC .texteContent {
     
     grid-template-rows: auto auto auto auto;
     padding-top: 55px;
@@ -105,16 +107,16 @@ a{
 }
 
 
-.MC .texte-content .Film {
+.MC .texteContent .Film {
     margin-bottom: 30px; /* Plus d'espace après le titre */
 }
-.MC .texte-content .rate {
+.MC .texteContent .rate {
     margin-bottom: 15px; /* Espace après la note */
 }
-.MC .texte-content .typeFilm {
+.MC .texteContent .typeFilm {
     margin-bottom: 10px; /* Espace après le type */
 }
-.MC .texte-content .synopsys {
+.MC .texteContent .synopsys {
     margin-bottom: 10px; /* Espace après le synopsis */
 }
 
@@ -150,6 +152,30 @@ a{
     font-weight: 300;
     font-family: "Inria", Sans;
 }
+
+.casting {
+    margin-top: 20px;
+}
+
+.casting h3 {
+    color: #cc0000;
+    margin-bottom: 10px;
+}
+
+.casting ul {
+    list-style: none;
+    padding: 0;
+}
+
+.casting li {
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+
+
+
+
 
 .close-btn1{
     margin-bottom: -20px;
@@ -518,10 +544,9 @@ footer .navFoot ul li a:hover {
 }
 
 /* Positionnement des flèches de navigation */
-.custom-button-next  , .custom-button-prev{
+.custom-button-next img {
     font-size: 30px;
-    color: #000;
-    background-color: rgba(0, 0, 0, 0.5);
+    background: transparent;
     width: 40px;
     height: 40px;
     display: flex;
@@ -533,14 +558,36 @@ footer .navFoot ul li a:hover {
     cursor: pointer;
     border-radius: 50%;
     z-index: 10;
+    right: 10px;
     
 }
 
-.custom-button-next {
-    right: 0px; /* Position initiale à droite */
+.custom-button-prev img {
+    font-size: 30px;
+    background: transparent;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    border-radius: 50%;
+    z-index: 10;
+    left: 10px;
 
 }
 
-.custom-button-prev {
-    left: 0px; /* Position initiale à gauche */
+.custom-button-next img {
+    width: 20px;
+    height: 20px;
+
+}
+
+.custom-button-prev img {
+    width: 20px;
+    height: 20px;
+
 }
