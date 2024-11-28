@@ -536,9 +536,9 @@ footer .navFoot ul li a:hover {
 }
 
 /* Positionnement des flèches de navigation */
-.custom-button-next, .custom-button-prev{
+.custom-button-next  , .custom-button-prev{
     font-size: 30px;
-    color: #ffffff;
+    color: #000;
     background-color: rgba(0, 0, 0, 0.5);
     width: 40px;
     height: 40px;
@@ -555,7 +555,7 @@ footer .navFoot ul li a:hover {
 }
 
 .custom-button-next {
-    right: 20px; /* Position initiale à droite */
+    right: 0px; /* Position initiale à droite */
 
 }
 
