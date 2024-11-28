@@ -65,21 +65,6 @@ a{
     font-size: 0.9rem;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /* Modale */
 .modal {
     display: none; 
@@ -99,7 +84,7 @@ a{
 }
 
 .MC {
-    display: grid;
+    display: flex;
     grid-template-columns: auto 1fr;
     width: 742px;
     border-radius: 10px;
@@ -167,16 +152,13 @@ a{
 }
 
 .close-btn1{
-    position: absolute;
-    position: absolute;
-    top: 10px;     /* Ajoute ces propriétés pour positionner */
-    left: 10px;   /* le bouton en haut à droite */
-    width: 20px;   /* Un peu plus grand pour mieux voir le cercle */
-    height: 20px;  /* Un peu plus grand pour mieux voir le cercle */
+    margin-bottom: -20px;
+    margin-left: -700px;
+    z-index: 1000;
+    left: 10px;
     display: flex;
     width: 10px;
     height: 10px;
-    display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 100%; /* Forme circulaire */

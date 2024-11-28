@@ -109,6 +109,7 @@ const openModal = (film) => {
     const modalType = modal.querySelector('.typeFilm');
     const modalSynopsis = modal.querySelector('.sinopsys');
     const date = modal.querySelector('.date');
+    const MC = document.querySelector('.MC')
 
 
     // Remplir le contenu de la modale avec les données du film
@@ -122,6 +123,11 @@ const openModal = (film) => {
 
     // Afficher la modale
     modal.style.display = 'flex';
+    modal.style.flexDirection = 'column';
+    if(window.innerWidth < 765){
+        MC.style.flexDirection = 'column';
+        MC.style.overflow = 'auto';
+    }
 };
 signLink.addEventListener('click', () => {
     document.querySelector('.modalSign').style.display = 'block';})
@@ -196,4 +202,9 @@ genreLinks.forEach(link => {
         genreLinks.forEach(l => l.classList.remove('active'));
         event.target.classList.add('active');
     });
+});
+window.addEventListener('resize', () => {
+    if (window.innerWidth < 600 || (window.innerWidth >= 600 && window.innerWidth < 900) || (window.innerWidth >= 900 && window.innerWidth < 1440) || (window.innerWidth >= 1440 && window.innerWidth < 1800) || window.innerWidth >= 1800) {
+        location.reload();
+    }
 });
