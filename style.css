@@ -7,6 +7,7 @@
     box-sizing: border-box;
     font-family: "Inria Sans", sans-serif;
     text-decoration: none;
+    font-family: "Inria Sans", sans-serif;
 }
 
 body {
@@ -145,6 +146,8 @@ a {
     grid-template-rows: auto auto auto auto;
     padding-top: 55px;
     margin: 20px;
+    display: flex;
+     margin: 20px;
 }
 
 <<<<<<< HEAD
@@ -199,13 +202,12 @@ a {
 
 .rate::before {
     content: "\2605";
-    font-size: 25px;
+    font-size: 40px;
 }
 
 .MC .synopsys {
     font-size: 16px;
     font-weight: 300;
-    font-family: "Inria", Sans;
 }
 
 <<<<<<< HEAD
@@ -434,6 +436,7 @@ input[type="checkbox"]:checked {
     list-style: none;
     font-size: 14px;
     text-transform: uppercase;
+    font-family: "Inria Sans", sans-serif;
 }
 
 .navbar .navLinks ul li a {
@@ -491,6 +494,7 @@ input[type="checkbox"]:checked {
     justify-content: center;
     list-style: none;
     text-transform: capitalize;
+    margin-bottom: 20px;
 }
 
 .listeGenre ul li a {
