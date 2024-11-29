@@ -12,8 +12,6 @@ const token = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjYmNmYjUwYzI3NjQ1NWE0YjkxNDk4ZDY4
 const legenre = document.querySelector(".legenre");
 const results = document.querySelector(".results");
 
-
-
 let hasSearched = false;
 let hasGenreSelected = false;
 
@@ -66,11 +64,10 @@ const displayFilms = async (swipper, genre = null) => {
 
     searchedFilms.results
         .filter(element => element.poster_path !== null && element.poster_path !== undefined)
-        .forEach(element => {
+        .forEach( async element => {
             const myFilmCard = document.createElement('div');
             myFilmCard.classList.add('swiper-slide');
                 
-              // NOUVEAU : Ajout du conteneur
             const cardContainer = document.createElement('div');
             cardContainer.classList.add('card-container');
             
@@ -78,16 +75,19 @@ const displayFilms = async (swipper, genre = null) => {
             myFilmImg.src = `https://image.tmdb.org/t/p/w500${element.poster_path}`;
             myFilmImg.alt = element.title || 'Film image';
             
-              // NOUVEAU : Ajout de la div hover
+
+             // Récupérer les genres pour ce film
+            const genreNames = await fetchGenreNames(element.genre_ids);
+
             const hoverInfo = document.createElement('div');
             hoverInfo.classList.add('hover-info');
             hoverInfo.innerHTML = `
                 <h3>${element.title || 'Titre indisponible'}</h3>
-                <p class="rate">Note: ${element.vote_average || 'N/A'}/10</p>
-                <p><strong>Date de sortie :</strong> ${element.release_date.slice(0,4) || 'Non disponible'}</p>
+                <p style="font-size: 25px;"><strong></strong> ${element.release_date.slice(0,4) || 'Non disponible'}</p>
+                <p class="genres" style="font-size: 10px;">${genreNames.map(genre => genre.toUpperCase()).join(' / ') || 'Non disponible'}</p>
+                <p class="rate" style="color: red; font-weight: bold; font-size: 30px;">${element.vote_average || 'N/A'}/10</p>
             `;
             
-              // NOUVEAU : Structure modifiée
             cardContainer.appendChild(myFilmImg);
             cardContainer.appendChild(hoverInfo);
             myFilmCard.appendChild(cardContainer);
@@ -98,39 +98,115 @@ const displayFilms = async (swipper, genre = null) => {
         });
 };
 
-
+// Fonction pour récupérer les noms des genres
+const fetchGenreNames = async (genreIds) => {
+    try {
+        const response = await fetch('https://api.themoviedb.org/3/genre/movie/list?language=fr-FR', {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        });
+        
+        if (!response.ok) throw new Error('Erreur lors de la récupération des genres');
+        
+        const data = await response.json();
+        return genreIds.map(id => {
+            const genre = data.genres.find(g => g.id === id);
+            return genre ? genre.name : '';
+        }).filter(name => name !== '');
+    } catch (error) {
+        console.error('Erreur:', error);
+        return [];
+    }
+};
 
 // Fonction pour ouvrir le pop-up avec le contenu du film
-const openModal = (film) => {
+const openModal = async (film) => {
     const modal = document.querySelector('.modal');
     const modalImage = modal.querySelector('.mimage');
     const modalTitle = modal.querySelector('.Film');
     const modalRate = modal.querySelector('.rate');
     const modalType = modal.querySelector('.typeFilm');
     const modalSynopsis = modal.querySelector('.sinopsys');
-    const date = modal.querySelector('.date');
-    const MC = document.querySelector('.MC')
+    const MC = document.querySelector('.MC');
 
-
-    // Remplir le contenu de la modale avec les données du film
+    // Nettoyer les anciennes dates avant d'en ajouter une nouvelle
+    const oldDates = modal.querySelectorAll('.movie-date');
+    oldDates.forEach(date => date.remove());
+    // Remplir le contenu de base de la modale
     modalImage.src = `https://image.tmdb.org/t/p/w500${film.poster_path}`;
+    // Style du titre en rouge
+    modalTitle.style.color = 'red';
     modalTitle.textContent = film.title || 'Titre indisponible';
-    date.innerHTML = `<p>${film.release_date.slice(0,4) || 'Non disponible'}</p>`;
-    modalRate.textContent = ` ${film.vote_average || 'N/A'}`;
-    modalSynopsis.innerHTML = `<li>${film.overview || 'Synopsis indisponible'}</li>`;
     
+    // Ajouter l'année sous le titre avec une classe spécifique
+    const dateElement = document.createElement('div');
+    dateElement.className = 'movie-date';
+    dateElement.style.marginTop = '10px';
+    dateElement.style.marginBottom = '10px';
+    dateElement.textContent = film.release_date?.slice(0,4) || 'Non disponible';
+    
+    // Insérer la date après le titre
+    modalTitle.after(dateElement);
 
+    // Note avec étoile
+    modalRate.innerHTML = `${film.vote_average || 'N/A'}`;
+
+    try {
+        // Afficher les genres en majuscules
+        const genreNames = await fetchGenreNames(film.genre_ids);
+        modalType.innerHTML = `${genreNames.map(genre => genre.toUpperCase()).join(' / ') || 'NON DISPONIBLE'}`;
+
+        // Requête pour obtenir le casting
+        const castResponse = await fetch(`https://api.themoviedb.org/3/movie/${film.id}/credits`, {
+            method: 'GET',
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json',
+            }
+        });
+
+        if (!castResponse.ok) throw new Error('Erreur lors de la récupération du casting');
+        
+        const castData = await castResponse.json();
+        
+        // Créer ou mettre à jour la section casting
+        let castingSection = modal.querySelector('.casting');
+        if (!castingSection) {
+            castingSection = document.createElement('div');
+            castingSection.classList.add('casting');
+            modalSynopsis.after(castingSection);
+        }
+
+        // Afficher le casting avec "CAST : "
+        castingSection.innerHTML = `<p style="margin-top: 20px;">CAST : ${castData.cast.slice(0, 4).map(actor => actor.name).join(', ')}</p>`;
+    } catch (error) {
+        console.error('Erreur:', error);
+    }
+
+    // Afficher le synopsis sans puce
+    modalSynopsis.innerHTML = `<p>${film.overview || 'Synopsis indisponible'}</p>`;
 
     // Afficher la modale
     modal.style.display = 'flex';
     modal.style.flexDirection = 'column';
-    if(window.innerWidth < 765){
+    if (window.innerWidth < 765) {
         MC.style.flexDirection = 'column';
         MC.style.overflow = 'auto';
     }
 };
+
+
+
+
+
+
+
 signLink.addEventListener('click', () => {
-    document.querySelector('.modalSign').style.display = 'block';})
+    document.querySelector('.modalSign').style.display = 'block';
+});
 
 // Fermeture de la modale
 document.querySelector('.close-btn').addEventListener('click', () => {
@@ -156,10 +232,6 @@ document.querySelector('.modal .close-btn1').addEventListener('click', () => {
             nextEl: '.custom-button-next',
             prevEl: '.custom-button-prev',
         },
-        // pagination: {
-        //     el: '.swiper-pagination',
-        //     clickable: true,
-        // },
         breakpoints: {
             600: {
                 slidesPerView: 2,
@@ -197,15 +269,15 @@ genreLinks.forEach(link => {
         event.preventDefault();
         hasGenreSelected = true;
         const genreId = event.target.id;
-        legenre.innerHTML=link.innerText;
+        legenre.innerHTML = link.innerText;
         displayFilms(swipper3, genreId);
         genreLinks.forEach(l => l.classList.remove('active'));
         event.target.classList.add('active');
     });
 });
+
 window.addEventListener('resize', () => {
     if (window.innerWidth < 600 || (window.innerWidth >= 600 && window.innerWidth < 900) || (window.innerWidth >= 900 && window.innerWidth < 1440) || (window.innerWidth >= 1440 && window.innerWidth < 1800) || window.innerWidth >= 1800) {
         location.reload();
     }
 });
-//coucou
