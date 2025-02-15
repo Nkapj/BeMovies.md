@@ -4,7 +4,7 @@
   
 ## 📸 Aperçu
 <p align="center">
-  <img src="previewBemovie.pngg" alt="Aperçu du projet" width="600">
+  <img src="previewBemovie.png" alt="Aperçu du projet" width="600">
 </p>
 
 ---
