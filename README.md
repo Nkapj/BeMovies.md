@@ -7,7 +7,6 @@
   <img src="previewBemovie.pngg" alt="Aperçu du projet" width="600">
 </p>
 
-
 ---
 
 ## 📖 Description
